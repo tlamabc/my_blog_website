@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ubuntu 24.04 LTS Setup</title>
+</head>
+<body>
+  <a href="../blog_personal.html">← Back to Blog</a>
+  <h1>Ubuntu 24.04 LTS Setup</h1>
+  <h2>Step-by-step guide to install Ubuntu 24.04 with LAMP stack, SSH, and basic security.</h2>
+  <ol>
+    <li><strong>Download Ubuntu 24.04 ISO</strong>: Get it from the official Ubuntu website.</li>
+    <li><strong>Create Bootable USB</strong>: Use Rufus (Windows) hoặc balenaEtcher (Linux/Mac).</li>
+    <li><strong>Install Ubuntu</strong>: Boot từ USB và làm theo hướng dẫn cài đặt.</li>
+    <li><strong>Update hệ thống</strong>:
+      <pre>sudo apt update && sudo apt upgrade -y</pre>
+    </li>
+    <li><strong>Cài đặt LAMP stack</strong>:
+      <pre>
+sudo apt install apache2 mysql-server php libapache2-mod-php php-mysql -y
+sudo systemctl enable apache2
+sudo systemctl enable mysql
+      </pre>
+    </li>
+    <li><strong>Cài đặt SSH</strong>:
+      <pre>sudo apt install openssh-server -y</pre>
+    </li>
+    <li><strong>Bảo mật cơ bản</strong>:
+      <ul>
+        <li>Đổi port SSH, tắt root login trong <code>/etc/ssh/sshd_config</code></li>
+        <li>Cài đặt UFW:
+          <pre>
+sudo apt install ufw -y
+sudo ufw allow OpenSSH
+sudo ufw enable
+          </pre>
+        </li>
+      </ul>
+    </li>
+    <li><strong>Hoàn tất!</strong> Truy cập <code>http://your_server_ip</code> để kiểm tra Apache.</li>
+  </ol>
+</body>
+</html>

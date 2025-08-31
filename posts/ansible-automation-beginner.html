@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ansible Automation for Beginners</title>
+</head>
+<body>
+  <a href="../blog_personal.html">← Back to Blog</a>
+  <h1>Ansible Automation for Beginners</h1>
+  <h2>Learn how to automate server configuration and deployment using Ansible playbooks and roles.</h2>
+  <ol>
+    <li>Cài đặt Ansible:
+      <pre>sudo apt update && sudo apt install ansible -y</pre>
+    </li>
+    <li>Tạo file <code>hosts</code> chứa danh sách server:
+      <pre>
+[web]
+192.168.1.10
+192.168.1.11
+      </pre>
+    </li>
+    <li>Viết playbook đơn giản <code>setup.yml</code>:
+      <pre>
+- hosts: web
+  become: yes
+  tasks:
+    - name: Cài nginx
+      apt:
+        name: nginx
+        state: present
+      </pre>
+    </li>
+    <li>Chạy playbook:
+      <pre>ansible-playbook -i hosts setup.yml</pre>
+    </li>
+    <li>Tìm hiểu thêm về roles, variables, handlers để tự động hóa phức tạp hơn.</li>
+  </ol>
+</body>
+</html>

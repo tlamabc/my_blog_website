@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Windows Server 2022 AD DS</title>
+</head>
+<body>
+  <a href="../blog_personal.html">← Back to Blog</a>
+  <h1>Windows Server 2022 AD DS</h1>
+  <h2>Configure Active Directory Domain Services on Windows Server 2022.</h2>
+  <ol>
+    <li>Cài đặt Windows Server 2022 và cập nhật hệ thống.</li>
+    <li>Mở <strong>Server Manager</strong> &gt; <strong>Add roles and features</strong>.</li>
+    <li>Chọn <strong>Active Directory Domain Services</strong> và cài đặt.</li>
+    <li>Chạy <strong>Promote this server to a domain controller</strong> sau khi cài xong.</li>
+    <li>Chọn <strong>Add a new forest</strong>, nhập tên domain (VD: <code>lam.local</code>).</li>
+    <li>Thiết lập password cho Directory Services Restore Mode.</li>
+    <li>Chờ server tự động reboot và hoàn tất cấu hình.</li>
+    <li>Kiểm tra bằng <code>Active Directory Users and Computers</code>.</li>
+  </ol>
+</body>
+</html>

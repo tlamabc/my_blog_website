@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Docker & Kubernetes</title>
+</head>
+<body>
+  <a href="../blog_personal.html">← Back to Blog</a>
+  <h1>Docker & Kubernetes</h1>
+  <h2>Deploy a mini Kubernetes cluster using kubeadm, managing pods and services.</h2>
+  <ol>
+    <li><strong>Cài Docker</strong>:
+      <pre>
+sudo apt update
+sudo apt install docker.io -y
+sudo systemctl enable docker
+sudo systemctl start docker
+      </pre>
+    </li>
+    <li><strong>Cài kubeadm, kubelet, kubectl</strong>:
+      <pre>
+sudo apt install apt-transport-https ca-certificates curl -y
+sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
+echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+sudo apt update
+sudo apt install kubelet kubeadm kubectl -y
+sudo apt-mark hold kubelet kubeadm kubectl
+      </pre>
+    </li>
+    <li><strong>Khởi tạo cluster</strong>:
+      <pre>
+sudo kubeadm init --pod-network-cidr=10.244.0.0/16
+      </pre>
+      Sau đó làm theo hướng dẫn để cấu hình <code>kubectl</code> cho user.
+    </li>
+    <li><strong>Cài Flannel network</strong>:
+      <pre>
+kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+      </pre>
+    </li>
+    <li><strong>Deploy thử nginx</strong>:
+      <pre>
+kubectl create deployment nginx --image=nginx
+kubectl expose deployment nginx --port=80 --type=NodePort
+      </pre>
+    </li>
+  </ol>
+</body>
+</html>
